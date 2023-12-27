@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: black; /* 배경색을 검은색으로 변경 */
+        }
+
+        .cart-container {
+            background-color: white;
+            border: 5px solid rgba(88, 89, 89, 0.471);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+            margin-top: 20px;
+        }
+
+        .cart-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding: 8px 0;
+        }
+
+        .item-name {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .item-price {
+            font-weight: bold;
+        }
+
+        .cart-total {
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .cart-button {
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cart-button:hover {
+            background-color: black;
+        }
+
+        .branding {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            color: white; /* 글씨를 흰색으로 변경 */
+            text-decoration: none;
+        }
+    </style>
+    <title>장바구니</title>
+</head>
+<body>
+    <a href="main.html" class="branding">JAVA MALL</a>
+    <div class="cart-container">
+        <h1 class="cart-header">Cart (장바구니)</h1>
+        <div class="cart-items" id="cartItems">
+        </div>
+<div class="category-item_0" id="cartItems">
+        </div>
+<div class="category-item_1" id="cartItems">
+        </div>
+        <div class="cart-items" id="cartItems">
+        </div>
+
+        <div class="cart-total">
+            합계금액: <span class="item-price" id="totalPrice">0원</span>
+        </div>
+        <a href="login.html"><button class="cart-button" type="button" onclick="moveToCart()">결제하기</button></a>
+    </div>
+    <script>
+        const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+        const cartItemsContainer = document.getElementById('cartItems');
+        const totalPriceSpan = document.getElementById('totalPrice');
+
+        if (cartItems && cartItems.length > 0) {
+            let totalAmount = 0;
+
+            cartItems.forEach((item, index) => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <span class="item-name">${item.name}</span>
+                    <span class="item-price">${item.price}</span> 
+                     <button class="remove-button" onclick="removeFromCart(${index})">Out Cart</button>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+
+                const itemPrice = parseInt(item.price.replace(/\D/g, ''), 10);
+                totalAmount += itemPrice;
+            });
+
+            totalPriceSpan.textContent = `${totalAmount.toLocaleString()}원`;
+        }
+
+        function removeFromCart(index) {
+            cartItems.splice(index, 1);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            location.reload(); // 장바구니 아이템을 삭제한 후 페이지를 새로고침하여 업데이트합니다.
+        }
+    </script>
+
+</body>
+</html>

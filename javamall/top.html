@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: black;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .menu-container {
+            position: absolute;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 101%;
+            margin-top: 51px;
+            background-color: #333;
+            color: white;
+            padding: 0px;
+            transition: left 0.5s;
+        }
+        .menu-container.active {
+            left: 0;
+        }
+
+        .menu-item {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+
+        .menu-item:hover {
+            background-color: #444;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .user-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .user-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .footer {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .category-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .category-item {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        .category-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+    </style>
+    <title>쇼핑몰</title>
+</head>
+<body>
+    <div class="header">
+        <div class="menu-icon" onclick="toggleMenu()">☰ Menu</div>
+        <a href="main.html" class="logo">JAVAMALL</a>
+        <div class="user-links">
+            <a href="login.html">✔️Login</a>
+            <a href="joinus.html">🧾️Join Us</a>
+            <a href="mypage.html">📋My Page</a>
+            <a href="cart.html">🛒Cart</a>
+            <input type="text" placeholder="🔍Search" class="search-box" id="searchBox" onkeydown="searchProduct(event)">
+        </div>
+    </div>
+    
+    <div class="menu-container" id="menu">
+        <a href="outer.html"><div class="menu-item">▹OUTER</div></a>
+        <a href="top.html"><div class="menu-item">▹TOP</div></a>
+        <a href="pants.html"><div class="menu-item">▹PANTS</div></a>
+        <!-- Add more menu items here -->
+    </div>
+    
+    <div class="category-container" id="categoryContainer">
+        <div class="category-item">
+            <img class="category-image" src="./img/top_1.jpg" alt="Outer Image">
+            <p> ODDPEARL 22SS3T2 & WHITE</p>
+	<p>￦120,000</p>
+	<input type = "button" value="IN CART" onclick="addToCart('ODDPEARL 22SS3T2 & WHITE','￦120,000')">
+        </div>
+        <div class="category-item">
+            <img class="category-image" src="./img/top_2.jpg" alt="Outer Image">
+            <p>베이프반팔 빅 에이프 헤드 티 M 블랙</p>
+	<p>￦130,000</p>
+	<input type = "button" value="IN CART" onclick="addToCart('베이프반팔 빅 에이프 헤드 티 M 블랙','￦130,000')">
+        </div>
+        <div class="category-item">
+            <img class="category-image" src="./img/top_3.jpg" alt="Outer Image">
+            <p>[아크메드라비] ADLV BABY FACE SHORT SLEEVE T-SHIRT BLACK RABBIT</p>
+	<p>￦200,000</p>
+	<input type = "button" value="IN CART" onclick="addToCart('[아크메드라비] ADLV BABY FACE SHORT SLEEVE T-SHIRT BLACK RABBIT','￦200,000')">
+        </div>
+	        <div class="category-item">
+            <img class="category-image" src="./img/top_4.jpg" alt="Outer Image">
+            <p>위켄드 브이론 티셔츠 반팔 The Weeknd x Vlone After Hours Acid Drip Tee 보레고</p>
+	<p>￦400,000</p>
+	<input type = "button" value="IN CART" onclick="addToCart('위켄드 브이론 티셔츠 반팔 The Weeknd x Vlone After Hours Acid Drip Tee 보레고','￦400,000')">
+        </div>
+
+        <div class="category-item">
+            <img class="category-image" src="./img/top_5.jpg" alt="Outer Image">
+            <p>Juice Wrld x Vlone 반팔 티셔츠 White</p>
+	<p>￦350,000</p>
+	<input type = "button" value="IN CART" onclick="addToCart('Juice Wrld x Vlone 반팔 티셔츠 White','￦350,000')">
+        </div>
+
+        <div class="category-item">
+            <img class="category-image" src="./img/top_6.jpg" alt="Outer Image">
+            <p>나이키 Swoosh sb Nike 반팔티 BLACK</p>
+	<p>￦80,000</p>
+	<input type = "button" value="IN CART" onclick="addToCart('나이키 Swoosh sb Nike 반팔티 BLACK','￦80,000')">
+        </div>
+
+        <div class="category-item">
+            <img class="category-image" src="./img/top_7.jpg" alt="Outer Image">
+            <p>[23S NEW] 라코스테 크로커다일 프린트 폴로 반팔 티셔츠(PF4843) 화이트</p>
+	<p>￦90,000</p>
+	<input type = "button" value="IN CART" onclick="addToCart('[23S NEW] 라코스테 크로커다일 프린트 폴로 반팔 티셔츠(PF4843) 화이트','￦90,000')">
+        </div>
+
+        <div class="category-item">
+            <img class="category-image" src="./img/top_8.jpg" alt="Outer Image">
+            <p>자라 티셔츠 남성 캐주얼 라운드 반팔 프린트 여름 단품 0495427712</p>
+	<p>￦110,000</p>
+	<input type = "button" value="IN CART" onclick="addToCart('자라 티셔츠 남성 캐주얼 라운드 반팔 프린트 여름 단품 0495427712','￦110,000')">
+        </div>
+
+
+        <div class="category-item">
+            <img class="category-image" src="./img/top_9.jpg" alt="Outer Image">
+            <p>떠그클럽 THUG CLUB 반팔티 WHITE</p>
+	<p>￦150,000</p>
+	<input type = "button" value="IN CART" onclick="addToCart('떠그클럽 THUG CLUB 반팔티 WHITE','￦150,000')">
+        </div>
+
+
+        <div class="category-item">
+            <img class="category-image" src="./img/top_0.jpg" alt="Outer Image">
+            <p>피스마이너스원X나이키 꽃 반팔티 BLACK</p>
+	<p>￦130,000</p>
+	<input type = "button" value="IN CART" onclick="addToCart('피스마이너스원X나이키 꽃 반팔티 BLACK','￦130,000')">
+        </div>
+
+
+    </div>
+    <div class="footer">
+        <p>TEL: 032-123-4485</p>
+        <p>COMPANY: (주) NAJAVARA</p>
+        <p>Since: 2023.08.18</p>
+        <p>ADDRESS: 인천광역시 미추홀구 학익동 </p>
+        <p>대표: Kim,Lee,Jang,Hong</p>
+    </div>
+    <script>
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    
+        function addToCart(itemName, price) {
+            cartItems.push({ name: itemName, price: price });
+            alert('카트에 추가되었습니다.');
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateCartDisplay();
+        }
+    
+        function updateCartDisplay() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            cartItemsContainer.innerHTML = ''; // 이전 항목 삭제
+    
+            cartItems.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <span class="item-name">${item.name}</span>
+                    <span class="item-price">${item.price}</span>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+        }
+    
+        function moveToCart() {
+            window.location.href = 'cart.html';
+        }
+    
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+    
+        function searchProduct(event) {
+            if (event.key === 'Enter') {
+                const searchBox = document.getElementById('searchBox');
+                const searchTerm = searchBox.value.trim().toLowerCase();
+    
+                // 검색어와 일치하는 물건 찾기
+                const matchingItem = cartItems.find(item => item.name.toLowerCase().includes(searchTerm));
+    
+                if (matchingItem) {
+                    // 검색어에 해당하는 물건이 있으면 해당 페이지로 이동
+                    window.location.href = `item-details.html?item=${encodeURIComponent(matchingItem.name)}`;
+                } else {
+                    alert('검색 결과가 없습니다.');
+                }
+            }
+        }
+    
+        // 페이지 로드 시 카트 표시 업데이트를 위해 이 함수를 호출합니다.
+        updateCartDisplay();
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JAVAMALL - 회원가입</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var duplicateCheckButton = document.getElementById("duplicate-check");
+            
+            duplicateCheckButton.addEventListener("click", function () {
+                alert("사용 가능한 아이디입니다");
+            });
+        }
+        );
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .signup-container {
+            background-color: white;
+            border: 5px solid rgba(88, 89, 89, 0.471);
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: black;
+        }
+        /* Additional Styles */
+        label[for="gender-male"], label[for="gender-female"], label[for="gender-other"] {
+            font-size: 14px;
+        }
+        #logo {
+            color: white;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+	font-size : 24px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <a href="main.html"><div id="logo">JAVA MALL</div></a>
+    <div class="signup-container">
+        <h1>회원가입</h1>
+        <form onsubmit="return validateForm()">
+            <label for="username">아이디:</label>
+            <div class="action-buttons">
+                <input type="text" id="username" name="username" required>
+                <button id="duplicate-check" type="button">중복확인</button>
+            </div>
+            
+            <label for="password">비밀번호:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <label for="confirm-password">비밀번호 확인:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+            
+            <label for="name">이름:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="zip-code">우편번호:</label>
+            <div class="action-buttons">
+                <input type="text" id="zip-code" name="zip-code" required>
+                <button type="button">우편번호 검색</button>
+            </div>
+            
+            <label for="address">주소:</label>
+            <input type="text" id="address" name="address" required>
+            
+            <label for="detail-address">상세 주소:</label>
+            <input type="text" id="detail-address" name="detail-address" required>
+            
+            <label for="phone">전화번호:</label>
+            <input type="tel" id="phone" name="phone" required>
+            
+            <label for="email">이메일:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label>성별:</label>
+            <label><input type="radio" name="ss">남성</label> <label><input type="radio" name="ss">여성</label>
+            
+            <button type="submit">가입하기</button>
+        </form>
+    </div>
+</body>
+</html>
